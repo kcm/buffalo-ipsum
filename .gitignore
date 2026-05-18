@@ -1,8 +1,57 @@
+# Python build/cache
 .venv/
+venv/
 dist/
 build/
 *.egg-info/
 __pycache__/
-.pytest_cache/
 *.pyc
+*.pyo
+
+# Test/lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Vim
+*.swp
+*.swo
+*.swn
+.*.swp
+.*.swo
+*~
+Session.vim
+.netrwhist
+
+# Emacs
+\#*\#
+.\#*
+.dir-locals.el
+
+# VS Code
+.vscode/
+
+# JetBrains / IntelliJ
+.idea/
+*.iml
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# Direnv / env files
+.envrc
+.env
+.env.local
+
+# macOS
 .DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
