@@ -1,0 +1,12 @@
+# Project index
+
+| Path | Purpose |
+|------|---------|
+| [pyproject.toml](pyproject.toml) | Package metadata, dependencies, build config, CLI entry point |
+| [CHANGELOG.md](CHANGELOG.md) | Release notes (Keep a Changelog format) |
+| [CLAUDE.md](CLAUDE.md) | Project context for Claude Code |
+| [src/buffaloipsum/__init__.py](src/buffaloipsum/__init__.py) | Static API: word/sentence/paragraph/text generators, `BUFFALO_ART`, `ascii_art()` |
+| [src/buffaloipsum/__main__.py](src/buffaloipsum/__main__.py) | CLI entry point (`buffalo-ipsum`) |
+| [src/buffaloipsum/live.py](src/buffaloipsum/live.py) | Optional `live.word()` / `live.words(n)` that fetch each buffalo via the Anthropic API |
+| [tests/test_buffaloipsum.py](tests/test_buffaloipsum.py) | Tests for the static API and ASCII art |
+| [tests/test_live.py](tests/test_live.py) | Tests for the live module (uses a fake client; no network) |
