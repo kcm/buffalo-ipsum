@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-05-18
+
+### Added
+- `CHANGELOG.md`, `CLAUDE.md`, and `INDEX.md` at the project root.
+- Expanded `.gitignore` covering common editor (vim/emacs/VS Code/JetBrains/Sublime),
+  env, and OS metadata files.
+
+### Changed
+- No runtime behavior changes versus 0.1.0; this release exists to ship the
+  updated project metadata in the sdist.
+
 ## [0.1.0] - 2026-05-18
 
 ### Added

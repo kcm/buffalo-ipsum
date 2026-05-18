@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "buffalo-ipsum"
-version = "0.1.0"
-description = "Filler text generator composed entirely of the word 'buffalo'."
+version = "0.1.1"
+description = "Filler text generator composed entirely of the word 'buffalo'. AI native."
 readme = { content-type = "text/markdown", text = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo." }
 requires-python = ">=3.9"
 license = { text = "MIT" }
@@ -25,6 +25,9 @@ buffalo-ipsum = "buffaloipsum.__main__:main"
 
 [project.urls]
 Homepage = "https://en.wikipedia.org/wiki/Buffalo_buffalo_Buffalo_buffalo_buffalo_buffalo_Buffalo_buffalo"
+Repository = "https://github.com/kcm/buffalo-ipsum.git"
+Issues = "https://github.com/kcm/buffalo-ipsum/issues"
+Changelog = "https://github.com/kcm/buffalo-ipsum/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/buffaloipsum"]
