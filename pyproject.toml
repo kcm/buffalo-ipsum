@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "buffalo-ipsum"
 version = "0.1.1"
 description = "Filler text generator composed entirely of the word 'buffalo'. AI native."
-readme = { content-type = "text/markdown", text = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo." }
+readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "Ken MacInnis", email = "ken.macinnis@gmail.com" }]
