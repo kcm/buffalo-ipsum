@@ -23,7 +23,7 @@ __all__ = [
     "ascii_art",
 ]
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 FAMOUS_SENTENCE = "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo"
 
