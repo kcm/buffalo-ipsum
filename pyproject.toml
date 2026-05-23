@@ -24,7 +24,7 @@ live = ["anthropic>=0.40"]
 buffalo-ipsum = "buffaloipsum.__main__:main"
 
 [project.urls]
-Homepage = "https://en.wikipedia.org/wiki/Buffalo_buffalo_Buffalo_buffalo_buffalo_buffalo_Buffalo_buffalo"
+Homepage = "https://buffalo.supplies"
 Repository = "https://github.com/kcm/buffalo-ipsum.git"
 Issues = "https://github.com/kcm/buffalo-ipsum/issues"
 Changelog = "https://github.com/kcm/buffalo-ipsum/blob/main/CHANGELOG.md"
