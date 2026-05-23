@@ -42,15 +42,19 @@ buffaloipsum.text(3)
 buffaloipsum.ascii_art(cols=2, rows=1)
 ```
 
-## Modes
+`--famous` / `famous=True` emits the canonical 8-buffalo sentence — *Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo.* — verbatim. It's grammatically valid English; "Buffalo" serves as a proper noun (Buffalo, NY), a common noun (the animal), and a verb (to bully) all at once.
 
-### Static mode (default)
+## Default mode
 
 Generates buffalo text locally with no dependencies and no network calls. All randomness is seeded from Python's `random` module; pass `seed=N` for reproducible output.
 
+## AI Native
+
+Two integrations with the modern AI stack: a live mode that fetches each buffalo from a large language model, and an MCP server that exposes the generators as tools for autonomous agents.
+
 ### Live mode
 
-Each word is fetched via a real Claude API call. The result is always "buffalo" — the point is that an LLM confirmed it.
+Routes every word through the Anthropic API. The output is always `"buffalo"`, with each token validated end-to-end by a frontier model.
 
 ```bash
 pip install 'buffalo-ipsum[live]'
@@ -65,13 +69,43 @@ live.word()     # -> "buffalo"  (one API call)
 live.words(5)   # -> ["buffalo", ...] (five API calls)
 ```
 
-Uses `claude-haiku-4-5-20251001` by default. Override with `--model` on the CLI or `model=` in Python.
+Uses `claude-haiku-4-5-20251001` by default. Override with `--model` on the CLI or `model=` in Python. Pass `verbose=True` (or `-v` on the CLI) to log requests, responses, and token usage to stderr.
 
-## Famous sentence
+### MCP server
 
-> **Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo.**
+Exposes the buffalo-ipsum generators as Model Context Protocol tools so any MCP-compatible client — Claude Code, IDE assistants, custom agents — can invoke them.
 
-A grammatically valid English sentence. "Buffalo" serves simultaneously as a proper noun (Buffalo, NY), a common noun (the animal), and a verb (to bully). `--famous` / `famous=True` emits it verbatim.
+```bash
+pip install 'buffalo-ipsum[mcp]'
+```
+
+Wire it into Claude Code's `settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "buffalo-ipsum": {
+      "command": "buffalo-ipsum-mcp"
+    }
+  }
+}
+```
+
+Tools exposed:
+
+| Tool | Description |
+|------|-------------|
+| `generate_words(count)` | Space-separated buffalos. |
+| `generate_sentences(count, famous)` | One sentence per line. |
+| `generate_paragraphs(count, famous)` | Blank-line-separated paragraphs. |
+| `generate_ascii_art(cols, rows, gap)` | Tiled ASCII-art herd. |
+| `famous_sentence()` | The canonical 8-buffalo sentence. |
+
+The server speaks stdio. To launch it directly (e.g., for debugging):
+
+```bash
+buffalo-ipsum-mcp
+```
 
 ## License
 

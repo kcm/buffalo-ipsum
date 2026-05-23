@@ -19,9 +19,11 @@ classifiers = [
 
 [project.optional-dependencies]
 live = ["anthropic>=0.40"]
+mcp = ["mcp>=1.0"]
 
 [project.scripts]
 buffalo-ipsum = "buffaloipsum.__main__:main"
+buffalo-ipsum-mcp = "buffaloipsum.mcp_server:main"
 
 [project.urls]
 Homepage = "https://buffalo.supplies"

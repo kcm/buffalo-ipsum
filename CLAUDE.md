@@ -11,8 +11,12 @@ on npm's hipsteripsum.
 - `src/buffaloipsum/live.py` — optional LLM-backed generator (`live.word()`,
   `live.words(n)`). Imports `anthropic` lazily; the package's base install has
   no runtime dependencies.
-- `tests/` — pytest suite. `test_live.py` uses a fake client; tests never hit
-  the network.
+- `src/buffaloipsum/mcp_server.py` — optional MCP server exposing the
+  generators as MCP tools (`generate_words`, `generate_sentences`,
+  `generate_paragraphs`, `generate_ascii_art`, `famous_sentence`). Console
+  entry point: `buffalo-ipsum-mcp`. Requires the `[mcp]` extra.
+- `tests/` — pytest suite. `test_live.py` uses a fake client; `test_mcp_server.py`
+  is skipped if the `mcp` package is not installed. Tests never hit the network.
 
 The PyPI distribution is `buffalo-ipsum` (hyphenated). The Python import name
 is `buffaloipsum` (Python identifiers cannot contain hyphens). The CLI command
@@ -23,7 +27,7 @@ is `buffalo-ipsum`.
 ```bash
 # Setup
 python3 -m venv .venv
-.venv/bin/pip install -e '.[live]' pytest build twine
+.venv/bin/pip install -e '.[live,mcp]' pytest build twine
 
 # Test
 .venv/bin/pytest -q

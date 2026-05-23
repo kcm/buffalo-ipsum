@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- MCP server (`buffaloipsum.mcp_server`) exposing the generators as MCP tools:
+  `generate_words`, `generate_sentences`, `generate_paragraphs`,
+  `generate_ascii_art`, and `famous_sentence`. Available behind the `[mcp]`
+  extra and via the new `buffalo-ipsum-mcp` console script.
+
 ## [0.1.3] - 2026-05-23
 
 ### Changed
