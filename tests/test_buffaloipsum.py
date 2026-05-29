@@ -61,6 +61,26 @@ def test_invalid_counts():
         bi.sentence(min_words=5, max_words=2)
 
 
+def test_invalid_paragraph_args():
+    with pytest.raises(ValueError):
+        bi.paragraph(min_sentences=0)
+    with pytest.raises(ValueError):
+        bi.paragraph(min_sentences=5, max_sentences=2)
+    with pytest.raises(ValueError):
+        bi.paragraphs(-1)
+
+
+def test_zero_counts():
+    assert bi.sentences(0) == []
+    assert bi.paragraphs(0) == []
+    assert bi.text(0) == ""
+
+
+def test_sentence_fixed_length():
+    s = bi.sentence(min_words=6, max_words=6, seed=0)
+    assert len(s[:-1].split()) == 6
+
+
 def test_buffalo_art_uniform_width():
     widths = {len(line) for line in bi.BUFFALO_ART}
     assert len(widths) == 1, f"art lines have mismatched widths: {widths}"

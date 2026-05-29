@@ -48,7 +48,10 @@ def _normalize(raw: str) -> str:
     cleaned = raw.strip().strip("'\"`.!?,;: ").lower()
     if not cleaned:
         return "buffalo"
-    return cleaned.split()[0]
+    result = cleaned.split()[0]
+    if result != "buffalo":
+        _vlog(f"warning: unexpected LLM response {raw!r} -> {result!r}")
+    return result
 
 
 def _vlog(msg: str) -> None:

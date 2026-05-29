@@ -54,7 +54,10 @@ mcp = FastMCP("buffalo-ipsum")
 @mcp.tool()
 def generate_words(count: int = 5) -> str:
     """Generate `count` instances of the word 'buffalo', space-separated."""
-    return " ".join(_words(count))
+    try:
+        return " ".join(_words(count))
+    except ValueError as e:
+        return f"Error: {e}"
 
 
 @mcp.tool()
@@ -64,19 +67,28 @@ def generate_sentences(count: int = 3, famous: bool = False) -> str:
     If `famous` is True, every sentence is the canonical grammatically-valid
     8-buffalo sentence.
     """
-    return "\n".join(_sentences(count, famous=famous))
+    try:
+        return "\n".join(_sentences(count, famous=famous))
+    except ValueError as e:
+        return f"Error: {e}"
 
 
 @mcp.tool()
 def generate_paragraphs(count: int = 3, famous: bool = False) -> str:
     """Generate `count` paragraphs of buffalo filler text, separated by blank lines."""
-    return "\n\n".join(_paragraphs(count, famous=famous))
+    try:
+        return "\n\n".join(_paragraphs(count, famous=famous))
+    except ValueError as e:
+        return f"Error: {e}"
 
 
 @mcp.tool()
 def generate_ascii_art(cols: int = 1, rows: int = 1, gap: int = 2) -> str:
     """Render a `cols` x `rows` grid of ASCII-art buffalo."""
-    return _ascii_art(cols=cols, rows=rows, gap=gap)
+    try:
+        return _ascii_art(cols=cols, rows=rows, gap=gap)
+    except ValueError as e:
+        return f"Error: {e}"
 
 
 @mcp.tool()

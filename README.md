@@ -16,16 +16,20 @@ Inspired by the [linguistically valid English sentence](https://en.wikipedia.org
 pip install buffalo-ipsum
 ```
 
+Requires Python 3.9 or later.
+
 ## Usage
 
 **CLI:**
 
 ```bash
-buffalo-ipsum                        # 3 paragraphs (default)
-buffalo-ipsum -t sentences -n 5      # 5 sentences
-buffalo-ipsum -t words -n 10         # 10 words
-buffalo-ipsum --famous               # the canonical 8-buffalo sentence
-buffalo-ipsum -t art --cols 3        # ASCII art herd
+buffalo-ipsum                            # 3 paragraphs (default)
+buffalo-ipsum -t sentences -n 5          # 5 sentences
+buffalo-ipsum -t words -n 10             # 10 words
+buffalo-ipsum --famous                   # the canonical 8-buffalo sentence
+buffalo-ipsum -t art --cols 3            # ASCII art herd
+buffalo-ipsum -t art --cols 3 --rows 2   # 3×2 grid
+buffalo-ipsum --seed 42                  # reproducible output
 ```
 
 **Python API:**
@@ -33,13 +37,18 @@ buffalo-ipsum -t art --cols 3        # ASCII art herd
 ```python
 import buffaloipsum
 
-buffaloipsum.word()                  # "buffalo"
-buffaloipsum.words(5)                # ["buffalo", "buffalo", ...]
-buffaloipsum.sentence()              # "Buffalo buffalo buffalo buffalo buffalo."
-buffaloipsum.sentence(famous=True)   # "Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo."
-buffaloipsum.paragraph()
-buffaloipsum.text(3)
-buffaloipsum.ascii_art(cols=2, rows=1)
+buffaloipsum.word()                             # "buffalo"
+buffaloipsum.words(5)                           # ["buffalo", "buffalo", ...]
+buffaloipsum.sentence()                         # "Buffalo buffalo buffalo buffalo buffalo."
+buffaloipsum.sentence(famous=True)              # canonical 8-buffalo sentence
+buffaloipsum.sentences(5)                       # list of 5 sentences
+buffaloipsum.paragraph()                        # one paragraph (3–7 sentences by default)
+buffaloipsum.paragraphs(3)                      # list of 3 paragraphs
+buffaloipsum.text(3)                            # 3 paragraphs joined by "\n\n"
+buffaloipsum.text(3, separator="\n---\n")       # custom separator
+buffaloipsum.ascii_art(cols=2, rows=1, gap=2)   # ASCII art grid
+buffaloipsum.FAMOUS_SENTENCE                    # the canonical sentence constant (str)
+buffaloipsum.BUFFALO_ART                        # ASCII art template (tuple of str)
 ```
 
 `--famous` / `famous=True` emits the canonical 8-buffalo sentence — *Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo.* — verbatim. It's grammatically valid English; "Buffalo" serves as a proper noun (Buffalo, NY), a common noun (the animal), and a verb (to bully) all at once.
@@ -65,8 +74,9 @@ buffalo-ipsum --live -t words -n 3
 ```python
 from buffaloipsum import live
 
-live.word()     # -> "buffalo"  (one API call)
-live.words(5)   # -> ["buffalo", ...] (five API calls)
+live.word()                   # -> "buffalo"  (one API call)
+live.words(5)                 # -> ["buffalo", ...] (five API calls)
+live.words(5, verbose=True)   # also logs requests and token usage to stderr
 ```
 
 Uses `claude-haiku-4-5-20251001` by default. Override with `--model` on the CLI or `model=` in Python. Pass `verbose=True` (or `-v` on the CLI) to log requests, responses, and token usage to stderr.

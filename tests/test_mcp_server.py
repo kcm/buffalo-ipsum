@@ -55,18 +55,7 @@ def test_famous_sentence_constant():
 
 
 def test_server_has_expected_tools():
-    """Sanity check: the FastMCP instance lists the tools we registered."""
-    # The internal layout has shifted across mcp SDK versions; try a few.
-    server = mcp_server.mcp
-    registered = set()
-    for attr in ("_tool_manager", "_tools"):
-        target = getattr(server, attr, None)
-        if target is None:
-            continue
-        tools = getattr(target, "_tools", target)
-        if isinstance(tools, dict):
-            registered.update(tools.keys())
-            break
+    """Sanity check: the expected tool callables exist on the module."""
     expected = {
         "generate_words",
         "generate_sentences",
@@ -74,9 +63,25 @@ def test_server_has_expected_tools():
         "generate_ascii_art",
         "famous_sentence",
     }
-    # If we couldn't introspect, at least confirm the callables exist on the module.
-    if not registered:
-        for name in expected:
-            assert callable(getattr(mcp_server, name)), name
-    else:
-        assert expected <= registered, f"missing: {expected - registered}"
+    for name in expected:
+        assert callable(getattr(mcp_server, name)), name
+
+
+def test_generate_words_invalid():
+    result = mcp_server.generate_words(-1)
+    assert result.startswith("Error:")
+
+
+def test_generate_sentences_invalid():
+    result = mcp_server.generate_sentences(-1)
+    assert result.startswith("Error:")
+
+
+def test_generate_paragraphs_invalid():
+    result = mcp_server.generate_paragraphs(-1)
+    assert result.startswith("Error:")
+
+
+def test_generate_ascii_art_invalid():
+    result = mcp_server.generate_ascii_art(cols=0)
+    assert result.startswith("Error:")
